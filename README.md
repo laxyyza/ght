@@ -1,5 +1,10 @@
 # GHT - Generic Hash Table
 Simple Hash Table in C
+### Features
+ *  Dynamic sizing based on load factor, with adjustable max & min thresholds.
+ *  Thread-Safe.
+ *  Automatic memory management (if `ght_t::free` is provided).
+ *  Generic Types.
 
 # Build
 > Setup
