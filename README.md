@@ -14,3 +14,5 @@ ninja -C build/
 ```
 ./build/example
 ```
+# Next
+Binary Search Tree / Red-Black Tree
