@@ -10,3 +10,10 @@ ght_include = include_directories('include/')
 
 libght = library('ght', ght_src, include_directories: ght_include)
 
+example_src = files('example/main.c')
+
+executable('example', example_src, include_directories: ght_include,
+    link_with: [
+        libght
+    ]
+)

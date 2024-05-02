@@ -1,6 +1,6 @@
 
-#ifndef GHT_H_
-#define GHT_H_
+#ifndef _GHT_H_
+#define _GHT_H_
 
 /*
  * GHT - Generic Hash Table
@@ -88,4 +88,4 @@ void        ght_destroy(ght_t* ht);
 void ght_lock(ght_t* ht);
 void ght_unlock(ght_t* ht);
 
-#endif // GHT_H_
+#endif // _GHT_H_
