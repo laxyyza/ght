@@ -1,5 +1,5 @@
-# ght
-Simple Generic Hash Table in C
+# GHT - Generic Hash Table
+Simple Hash Table in C
 
 # Build
 > Setup
