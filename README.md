@@ -28,7 +28,7 @@ ninja -C build/
 ```
 > Run
 ```
-./build/example
+./build/example/example
 ```
 # Next
 Binary Search Tree / Red-Black Tree
