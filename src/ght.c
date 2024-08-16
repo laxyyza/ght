@@ -85,7 +85,7 @@ ght_resize(ght_t* ht, size_t new_size)
     old_table = ht->table;
 
     ht->size = new_size;
-    ht->table = calloc(sizeof(ght_bucket_t), new_size);
+    ht->table = calloc(new_size, sizeof(ght_bucket_t));
     ht->count = 0;
 
     for (size_t i = 0; i < old_size; i++)
@@ -141,7 +141,7 @@ ght_init(ght_t* ht, size_t initial_size, ght_free_t free_callback)
     if (initial_size == 0)
         return false;
 
-    ht->table = calloc(sizeof(ght_bucket_t), initial_size);
+    ht->table = calloc(initial_size, sizeof(ght_bucket_t));
     if (ht->table == NULL)
         return false;
 
