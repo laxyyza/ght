@@ -47,7 +47,10 @@ ght_do_insert(ght_t* ht, uint64_t key, void* data)
     bucket = ht->table + idx;
 
     if (bucket->key == key)
-        return false;
+    {
+        bucket->data = data;
+        return true;
+    }
     if (bucket->data)
     {
         parent = bucket;
@@ -55,7 +58,10 @@ ght_do_insert(ght_t* ht, uint64_t key, void* data)
         while (*next)
         {
             if (next[0]->key == key)
-                return false;
+            {
+                next[0]->data = data;
+                return true;
+            }
             next = &next[0]->next;
         }
         bucket = calloc(1, sizeof(ght_bucket_t));
