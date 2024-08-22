@@ -283,6 +283,8 @@ ght_clear(ght_t* ht)
     }
     ht->count = 0;
     ht->load = 0.0;
+    ght_check_load(ht);
+    memset(ht->table, 0, ht->size * sizeof(ght_bucket_t));
     ght_unlock(ht);
 }
 
