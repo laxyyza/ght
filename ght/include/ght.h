@@ -80,9 +80,9 @@ void        ght_destroy(ght_t* ht);
 
 /* Loop each element in hash table. */
 #define GHT_FOREACH(item, ht, code_block)\
-    for (size_t i = 0; i < ht->size; i++)\
+    for (size_t __i = 0; __i < ht->size; __i++)\
     {\
-        ght_bucket_t* _bucket = ht->table + i;\
+        ght_bucket_t* _bucket = ht->table + __i;\
         while (_bucket && _bucket->data)\
         {\
             item = _bucket->data;\
