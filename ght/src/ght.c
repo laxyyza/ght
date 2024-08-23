@@ -278,13 +278,17 @@ ght_clear(ght_t* ht)
             next = bucket->next;
             if (bucket->inheap)
                 free(bucket);
+            else
+            {
+                bucket->data = NULL;
+                bucket->key = 0;
+            }
             bucket = next;
         }
     }
     ht->count = 0;
     ht->load = 0.0;
-    ght_check_load(ht);
-    memset(ht->table, 0, ht->size * sizeof(ght_bucket_t));
+    ght_resize(ht, ht->min_size);
     ght_unlock(ht);
 }
 
