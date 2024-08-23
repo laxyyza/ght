@@ -7,8 +7,12 @@
  */
 
 #include <stdint.h>
-#include <pthread.h>
 #include <stdbool.h>
+#include <stdlib.h>
+
+#ifdef _GHT_THREAD_SAFE
+#include <pthread.h>
+#endif // _GHT_THREAD_SAFE
 
 typedef void (*ght_free_t)(void* data);
 
@@ -42,7 +46,9 @@ typedef struct
     size_t          count;
     bool            ignore_resize;
 
+#ifdef _GHT_THREAD_SAFE
     pthread_mutex_t mutex;
+#endif
     ght_free_t      free;
 
     /* Load Factor & min/max thresholds */
@@ -85,7 +91,15 @@ void        ght_destroy(ght_t* ht);
         }\
     }
 
-void ght_lock(ght_t* ht);
-void ght_unlock(ght_t* ht);
+#ifdef _GHT_THREAD_SAFE
+void ght_lock_f(ght_t* ht);
+void ght_unlock_f(ght_t* ht);
+
+#define ght_lock(ht) ght_lock_f(ht)
+#define ght_unlock(ht) ght_unlock_f(ht)
+#else
+#define ght_lock(ht) 
+#define ght_unlock(ht) 
+#endif // _GHT_THREAD_SAFE
 
 #endif // _GHT_H_

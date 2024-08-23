@@ -1,5 +1,4 @@
 #include "ght.h"
-#include <stdlib.h>
 #include <string.h>
 
 #define GHT_MAX_LOAD 0.7
@@ -160,22 +159,26 @@ ght_init(ght_t* ht, size_t initial_size, ght_free_t free_callback)
     ht->min_load = GHT_MIN_LOAD;
     ht->ignore_resize = false;
 
+#ifdef _GHT_THREAD_SAFE
     pthread_mutex_init(&ht->mutex, NULL);
+#endif
 
     return true;
 }
 
+#ifdef _GHT_THREAD_SAFE
 void 
-ght_lock(ght_t* ht)
+ght_lock_f(ght_t* ht)
 {
     pthread_mutex_lock(&ht->mutex);
 }
 
 void 
-ght_unlock(ght_t* ht)
+ght_unlock_f(ght_t* ht)
 {
     pthread_mutex_unlock(&ht->mutex);
 }
+#endif // _GHT_THREAD_SAFE
 
 uint64_t     
 ght_hashstr(const char* str)
@@ -299,6 +302,8 @@ ght_destroy(ght_t* ht)
         return;
 
     ght_clear(ht);
+#ifdef _GHT_THREAD_SAFE
     pthread_mutex_destroy(&ht->mutex);
+#endif // _GHT_THREAD_SAFE
     free(ht->table);
 }
