@@ -132,7 +132,7 @@ ght_del_bucket(ght_t* ht, ght_bucket_t* bucket)
         memcpy(bucket, next, sizeof(ght_bucket_t));
         free(next);
     }
-    else if (bucket->inheap == -1)
+    else if (bucket->inheap == GHT_BUCKET_INHEAP)
         free(bucket);
     else
         memset(bucket, 0, sizeof(ght_bucket_t));
@@ -285,6 +285,7 @@ ght_clear(ght_t* ht)
             {
                 bucket->data = NULL;
                 bucket->key = 0;
+				bucket->next = NULL;
             }
             bucket = next;
         }
