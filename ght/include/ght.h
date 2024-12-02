@@ -7,7 +7,6 @@
  */
 
 #include <stdint.h>
-#include <stdbool.h>
 #include <stdlib.h>
 
 #ifdef _GHT_THREAD_SAFE

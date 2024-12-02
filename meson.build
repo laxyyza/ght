@@ -1,7 +1,8 @@
 project('ght', 'c',
     default_options: [
         'werror=true',
-        'warning_level=3'
+        'warning_level=3',
+        'c_std=c23'
     ]
 )
 
